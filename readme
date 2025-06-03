@@ -1,0 +1,25 @@
+E-LEARN atau e-learning adalah projek untuk UAS mata kuliah prak. pemograman web dan pemograman web
+lalu terdapat 3 role yakni ada admin, lecturer dan mahasiswa yang di mana admin ini bisa mengakses semua nya
+
+#role dosen
+1. register dan login sbg dosen
+2. berhasil masuk akan ke halaman dashboard
+3. lalu terdapat banyak menu yang dapat di akses oleh dosen
+   - dahsboard
+   - data mahasiswa
+   - materi
+   - tugas
+   - nilai
+   - profile
+4. pada menu dashboard dosen bisa melihat data mahasiswa dan tugas yang di buat oleh dosen
+5. pada menu data mahasiswa dosen bisa melihat data mahasiswa yang terdaftar di dalam sistem
+6. pada menu materi dosen bisa mengupload materi yang di buat oleh dosen tergantung siapa dosen mata
+   kuliah tersebut
+7. pada menu tugas dosen bisa membuat tugas yang di buat oleh dosen tergantung siapa dosen mata kuliah
+   tersebut
+8. pada menu nilai dosen bisa melihat nilai mahasiswa yang di buat oleh dosen tergantung siapa dosen mata
+   kuliah tersebut
+9. pada menu profile dosen bisa mengubah data diri dosen
+10. pada menu logout dosen bisa keluar dari sistem
+
+#role mahasiswa
