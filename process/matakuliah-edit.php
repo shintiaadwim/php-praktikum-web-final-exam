@@ -1,5 +1,5 @@
-<!-- edit.php adalah proses dari index.php yang dimana untuk mengedit data mhs,
-    yang dimana edit.php ini juga terhubung di index.update.php sbg form nya -->
+<!-- matakuliah-edit.php adalah proses dari matakuliah.php yang dimana untuk menmengupdate nama nama matakuliah, 
+    kode dan ruangannya yang dimana matakuliah-edit.php ini juga terhubung di matakuliah-create.php sbg form nya-->
 <?php
 include '../connection/koneksi.php';
 

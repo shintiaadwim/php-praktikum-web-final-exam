@@ -1,10 +1,12 @@
+<!-- nilai-edit.php adalah proses dari nilai.php yang dimana untuk menmengupdate sekaligus menambah nilai baru,
+    yang dimana yang bisa mengakses atau menginputkan nilai dari keseluruhan matkul adalah admin -->
 <?php
 session_start();
 include '../connection/koneksi.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // $id = $_POST['id'];
-    $mahasiswa_id = $_POST['mahasiswa_id']; // tambahkan ini di form HTML juga
+    $mahasiswa_id = $_POST['mahasiswa_id'];
     $pasd   = $_POST['pasd'];
     $asd    = $_POST['asd'];
     $bd     = $_POST['bd'];

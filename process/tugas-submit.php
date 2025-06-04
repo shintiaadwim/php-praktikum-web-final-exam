@@ -1,16 +1,16 @@
-<!-- materi-add.php adalah proses dari materi.php yang dimana dosen dapat menambah data materi agar
-    bisa di akses oleh mahasiswa, yang dimana materi-add.php ini juga terhubung di materi-create.php sbg form nya-->
+<!-- tugas-submit.php adalah proses dari tugas-submission.php yang dimana mahasiswa mengupload
+    tugas yang,sudah dikerjakan sesuai dengan tugas yang diberikan oleh dosen matkul tsb-->
 <?php
 session_start();
 include '../connection/koneksi.php';
 date_default_timezone_set('Asia/Jakarta'); 
 
-$uploadDir = '../files/submission/';
+$uploadDir = '../files/submission/'; // Direktori tempat menyimpan file yang diupload
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $content = $_POST['content'];
     $tugas_id = $_POST['tugas_id'];
     $matkul_id = $_POST['matkul_id'];
-    $nilai = isset($_POST['nilai']) && $_POST['nilai'] !== '' ? $_POST['nilai'] : 0;
+    $nilai = isset($_POST['nilai']) && $_POST['nilai'] !== '' ? $_POST['nilai'] : 0; // Nilai 0 jika dosen belum memberikan nilai
     
     $mahasiswa_id = $_SESSION['user_id'];
 

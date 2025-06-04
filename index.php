@@ -7,18 +7,18 @@
         exit();
     }
 
-    // PAGINATION SETUP
+    // PAGINATION : UNTUK MENGATUR SLIDE DATA MAHASISWA
     $limit = 6; // jumlah data per halaman
-    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-    $start = ($page - 1) * $limit;
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // mengecek apakah ada parameter page di URL (contoh: ?page=2)
+    $start = ($page - 1) * $limit; // menghitung data keberapa yang harus mulai ditampilkan
 
-    // Hitung total data
-    $result_count = mysqli_query($conn, "SELECT COUNT(*) AS total FROM mahasiswa");
+    // Hitung total data mahasiswa yang dibutuhkan untuk pagination
+    $result_count = mysqli_query($conn, "SELECT COUNT(*) AS total FROM mahasiswa"); 
     $row_count = mysqli_fetch_assoc($result_count);
     $total_data = $row_count['total'];
     $total_pages = ceil($total_data / $limit);
 
-    // Ambil data sesuai halaman
+    // Mengambil data sesuai halaman dan urut sesuai nrp
     $sql_mhs = "SELECT * FROM mahasiswa ORDER BY nrp LIMIT $start, $limit";
     $result_mhs = mysqli_query($conn, $sql_mhs);
 ?>
@@ -61,7 +61,6 @@
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                        <!-- <th scope="col" class="px-6 py-3">ID</th> -->
                         <th scope="col" class="px-6 py-3">NRP</th>
                         <th scope="col" class="px-6 py-3">Name</th>
                         <th scope="col" class="px-6 py-3">Age</th>
@@ -74,29 +73,28 @@
                 </thead>
                 <tbody>
                 <?php
-                if (mysqli_num_rows($result_mhs)>0) {
-                    while ($row_mhs = mysqli_fetch_assoc($result_mhs)) {
-                        $id = $row_mhs["id"];
-                    ?>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <!-- <td class="px-6 py-4 font-medium text-gray-900 dark:text-white"><?php echo $row_mhs["id"]; ?></td> -->
-                        <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_mhs["nrp"]; ?></td>
-                        <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_mhs["name"]; ?></td>
-                        <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_mhs["age"]; ?></td>
-                        <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_mhs["gender"]; ?></td>
-                        <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_mhs["address"]; ?></td>
-                        <?php if (isset($_SESSION['role']) && in_array($_SESSION['role'], ['lecturer', 'admin'])): ?>    
-                            <td class="flex items-center px-6 py-4">
-                                <a href="index-update.php?id=<?php echo $row_mhs["id"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Update</a>
-                                <a href="process/remove.php?id=<?php echo $row_mhs["id"]; ?>" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Delete</a>
-                            </td>
-                        <?php endif; ?>
-                    </tr>
+                    if (mysqli_num_rows($result_mhs)>0) {
+                        while ($row_mhs = mysqli_fetch_assoc($result_mhs)) {
+                            $id = $row_mhs["id"];
+                ?>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_mhs["nrp"]; ?></td>
+                                <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_mhs["name"]; ?></td>
+                                <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_mhs["age"]; ?></td>
+                                <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_mhs["gender"]; ?></td>
+                                <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_mhs["address"]; ?></td>
+                                <?php if (isset($_SESSION['role']) && in_array($_SESSION['role'], ['lecturer', 'admin'])): ?>    
+                                    <td class="flex items-center px-6 py-4">
+                                        <a href="index-update.php?id=<?php echo $row_mhs["id"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Update</a>
+                                        <a href="process/remove.php?id=<?php echo $row_mhs["id"]; ?>" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Delete</a>
+                                    </td>
+                                <?php endif; ?>
+                            </tr>
                 <?php
+                        }
+                    } else {
+                        echo "<tr><td colspan='5' class='px-4 py-2 border text-center'>No data found</td></tr>";
                     }
-                } else {
-                    echo "<tr><td colspan='5' class='px-4 py-2 border text-center'>No data found</td></tr>";
-                }
                 ?>
                 </tbody>
             </table>

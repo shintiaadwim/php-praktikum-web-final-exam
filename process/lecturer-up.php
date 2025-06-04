@@ -1,3 +1,4 @@
+<!-- lecturer-up.php adalah proses dari lecturer-register.php yang dimana untuk login sebagai dosen -->
 <?php
 include '../connection/koneksi.php';
 
@@ -9,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $role = 'lecturer';
 
+    // Validasi input dari database dosen yang sudah ada
     $sqlLecturer = "SELECT * FROM lecturer WHERE nip='$nip' AND name='$name'";
     $resultLecturer = mysqli_query($conn, $sqlLecturer);
     
@@ -16,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = mysqli_fetch_assoc($resultLecturer);
         $user_id = $data['id'];
         
+        // Jika data dosen sudah ada, maka buat akun user baru
         $sqlUsers = "INSERT INTO users (user_id, username, password, role) VALUES ('$user_id', '$username', '$password', '$role')";
         if (mysqli_query($conn, $sqlUsers)) {
             $user_id = mysqli_insert_id($conn);

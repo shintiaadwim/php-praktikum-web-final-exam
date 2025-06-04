@@ -1,3 +1,5 @@
+<!-- tugas-submit-edit.php adalah proses dari tugas-submission-update.php yang dimana
+    dosen dapat memberikan nilai tugas dari mahasiswa yang sudah mengumpulkan tugas tsb -->
 <?php
 session_start();
 include '../connection/koneksi.php';

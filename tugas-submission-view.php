@@ -2,8 +2,8 @@
     session_start();
     include 'connection/koneksi.php';
 
-    $folder = "files/submission/";
-    $file = null;
+    $folder = "files/submission/";  // Folder tempat file submission disimpan
+    $file = null;                   // Inisialisasi variabel file
 
     // Jika ada parameter id, ambil nama file dari database
     if (isset($_GET['id'])) {
@@ -16,13 +16,13 @@
 
     // Jika tidak ada id, cek parameter file langsung
     if (!$file) {
-        $availableFiles = array_values(array_diff(scandir($folder), array('.', '..')));
-        $defaultFile = count($availableFiles) > 0 ? $availableFiles[0] : null;
-        $file = isset($_GET['file']) && $_GET['file'] !== '' ? $_GET['file'] : $defaultFile;
+        $availableFiles = array_values(array_diff(scandir($folder), array('.', '..'))); // Ambil daftar file yang tersedia di folder
+        $defaultFile = count($availableFiles) > 0 ? $availableFiles[0] : null; // Ambil file pertama sebagai pilihan default, jika tidak ada file set ke null
+        $file = isset($_GET['file']) && $_GET['file'] !== '' ? $_GET['file'] : $defaultFile; // Mencek apakah ada parameter file, jika tidak ada gunakan file default
     }
 
-    $file = basename($file);
-    $filePath = $folder . $file;
+    $file = basename($file);        // Mengambil nama file saja untuk keamanan, jadi lokasi filenya tidak bisa diakses sembarangan
+    $filePath = $folder . $file;    // Mengetahui lokasi folder dan file (contoh: materi/bab1.pdf)
 ?>
 
 <?php 
@@ -39,7 +39,9 @@
             <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Pilih file materi untuk ditampilkan.</p>
         </div>
         <?php if (isset($_SESSION['role']) && in_array($_SESSION['role'], ['lecturer', 'admin'])): ?>
+            <!-- Menampilkan file pada inframe -->
             <?php if ($file && file_exists($filePath)) { ?>
+                <!-- #toolbar=1 : untuk menampilkan navigasi file -->
                 <iframe src="<?php echo $filePath; ?>#toolbar=1" class="w-full h-[80vh] border rounded" frameborder="0"></iframe>
                     <div class="mt-4">
             <?php } else { ?>

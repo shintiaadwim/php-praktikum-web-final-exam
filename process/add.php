@@ -10,21 +10,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $gender  = $_POST['gender'];
     $address = $_POST['address'];
 
-    // validasi input data mhs
+    // Validasi input data mhs
     $check = "SELECT * FROM mahasiswa WHERE nrp='$nrp'";
     $result_mhs = mysqli_query($conn, $check);
 
-    // jika data mhs sudah ada, maka redirect ke index.php dengan pesan error
+    // Jika data mhs sudah ada, maka redirect ke index.php dengan pesan error
     if (mysqli_num_rows($result_mhs) > 0) {
         header("Location: ../index.php?error=duplicate");
         exit;
     }
 
-    // insert data ke database pada tabel mahasiswa
+    // Jnsert data ke database pada tabel mahasiswa
     $insert = "INSERT INTO mahasiswa (nrp, name, age, gender, address)
                 VALUES ('$nrp', '$name', '$age', '$gender', '$address')";
 
-    // jika berhasil, maka redirect ke index.php dengan pesan success
+    // Jika berhasil, maka redirect ke index.php dengan pesan success
     if (mysqli_query($conn, $insert)) {
         header("Location: ../index.php?success=added");
     } else {

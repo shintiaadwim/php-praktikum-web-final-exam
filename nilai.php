@@ -7,13 +7,15 @@
         exit();
     }
 
-    if ($_SESSION['role'] == 'mahasiswa') {
+    if ($_SESSION['role'] == 'mahasiswa') { 
         $user_id = $_SESSION['user_id'];
+        // Jika user adalah mahasiswa, ambil nilai berdasarkan user_id
         $sql_nilai = "SELECT m.id AS mhs_id, m.nrp, m.name, n.id AS nilai_id, n.pasd, n.asd, n.bd, n.os, n.pbd, n.ppweb, n.pweb, n.kwn, n.pos, n.mtk
                     FROM mahasiswa AS m
                     LEFT JOIN nilai AS n ON m.id = n.mahasiswa_id
                     WHERE m.id = $user_id";
     } else {
+        // Jika user adalah dosen/admin, ambil semua nilai
         $sql_nilai = "SELECT m.id AS mhs_id, m.nrp, m.name, n.id AS nilai_id, n.pasd, n.asd, n.bd, n.os, n.pbd, n.ppweb, n.pweb, n.kwn, n.pos, n.mtk
                     FROM mahasiswa AS m
                     LEFT JOIN nilai AS n ON m.id = n.mahasiswa_id
@@ -24,11 +26,6 @@
     if (!$result_nilai) {
         die('SQL error: ' . mysqli_error($conn));
     }
-
-    if (mysqli_num_rows($result_nilai) == 0) {
-    echo "<p style='color:red;'>Query berhasil, tapi tidak ada data ditemukan.</p>";
-    }
-
 ?>
 
 <?php 

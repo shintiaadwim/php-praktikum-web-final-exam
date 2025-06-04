@@ -1,12 +1,11 @@
-<!-- tugas-add.php adalah proses dari tugas.php yang dimana dosen dapat mengupload tugas agar
-    bisa di akses oleh mahasiswa dan mahasiswa jua bisa mengumpulkan tugas kepada dosen,
+<!-- tugas-add.php adalah proses dari tugas.php yang dimana dosen dapat mengupload tugas agar bisa di akses oleh
+    mahasiswa untuk mengumpulkan tugas serta melihat nilai jika tugas yang terkumpulkan sudah di nilai dosen matkul tsb,
     yang dimana tugas-add.php ini juga terhubung di tugas-create.php sbg form nya-->
 <?php
 include '../connection/koneksi.php';
-
 date_default_timezone_set('Asia/Jakarta'); 
 
-$uploadDir = '../files/tugas/';
+$uploadDir = '../files/tugas/'; // Direktori tempat menyimpan file yang diupload
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST['name'];
     $content = $_POST['content'];
@@ -15,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $matkul_id = $_POST['matkul_id'];
     $dateTime = "$date $time:00";
 
-    // Cek apakah file dilampirkan
+    // Cek apakah file dilampirkan ada atau tidak
     if (!empty($_FILES['tugas-file']['name'])) {
         $fileName = $_FILES['tugas-file']['name'];
         $tmpName = $_FILES['tugas-file']['tmp_name'];
@@ -27,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $fileName = addslashes($fileName);
         $filePath = addslashes($filePath);
-    } else {
+    } else { // Jika tidak ada file yang diupload, set variabel file menjadi kosong
         $fileName = '';
         $fileSize = 0;
         $fileType = '';

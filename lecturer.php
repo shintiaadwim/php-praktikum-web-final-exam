@@ -6,7 +6,7 @@
         header("Location: http://localhost/uas-pweb/login.php");
         exit();
     }
-
+    
     $sql_lecturer = "SELECT * FROM lecturer ORDER BY nip";
     $result_lecturer = mysqli_query($conn, $sql_lecturer);
 ?>
@@ -53,7 +53,6 @@
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <!-- <th scope="col" class="px-6 py-3">ID</th> -->
                             <th scope="col" class="px-6 py-3">NIP</th>
                             <th scope="col" class="px-6 py-3">Name</th>
                             <th scope="col" class="px-6 py-3">Mata Kuliah</th>
@@ -66,29 +65,29 @@
                     </thead>
                     <tbody>
                     <?php
-                    if (mysqli_num_rows($result_lecturer)>0) {
-                        while ($row_lecturer = mysqli_fetch_assoc($result_lecturer)) {
-                            $id = $row_lecturer["id"];
+                        if (mysqli_num_rows($result_lecturer)>0) {
+                            while ($row_lecturer = mysqli_fetch_assoc($result_lecturer)) {
+                                $id = $row_lecturer["id"];
                     ?>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <!-- <td class="px-6 py-4 font-medium text-gray-900 dark:text-white"><?php echo $row_lecturer["id"]; ?></td> -->
-                            <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_lecturer["nip"]; ?></td>
-                            <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_lecturer["name"]; ?></td>
-                            <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_lecturer["matakuliah"]; ?></td>
-                            <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_lecturer["room"]; ?></td>
-                            <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_lecturer["telp"]; ?></td>
-                            <?php if (isset($_SESSION['role']) && in_array($_SESSION['role'], ['admin'])): ?>
-                                <td class="flex items-center px-6 py-4">
-                                    <a href="lecturer-update.php?id=<?php echo $row_lecturer["id"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Update</a>
-                                    <a href="process/lecturer-remove.php?id=<?php echo $row_lecturer["id"]; ?>" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Delete</a>
-                                </td>
-                            <?php endif; ?>
-                        </tr>
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    <!-- <td class="px-6 py-4 font-medium text-gray-900 dark:text-white"><?php echo $row_lecturer["id"]; ?></td> -->
+                                    <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_lecturer["nip"]; ?></td>
+                                    <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_lecturer["name"]; ?></td>
+                                    <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_lecturer["matakuliah"]; ?></td>
+                                    <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_lecturer["room"]; ?></td>
+                                    <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row_lecturer["telp"]; ?></td>
+                                    <?php if (isset($_SESSION['role']) && in_array($_SESSION['role'], ['admin'])): ?>
+                                        <td class="flex items-center px-6 py-4">
+                                            <a href="lecturer-update.php?id=<?php echo $row_lecturer["id"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Update</a>
+                                            <a href="process/lecturer-remove.php?id=<?php echo $row_lecturer["id"]; ?>" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Delete</a>
+                                        </td>
+                                    <?php endif; ?>
+                                </tr>
                     <?php
+                            }
+                        } else {
+                            echo "<tr><td colspan='5' class='px-4 py-2 border text-center'>No data found</td></tr>";
                         }
-                    } else {
-                        echo "<tr><td colspan='5' class='px-4 py-2 border text-center'>No data found</td></tr>";
-                    }
                     ?>
                     </tbody>
                 </table>
@@ -109,11 +108,11 @@
 
                     if ($row_lecturer = mysqli_fetch_assoc($result_profile)) {
                 ?>
-                    <div class="flex flex-col items-center pb-10">
-                        <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="img/lecturer.jpeg" alt="Lecturer"/>
-                        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><?php echo $row_lecturer["name"]; ?></h5>
-                        <span class="text-sm text-gray-500 dark:text-gray-400"><?php echo $row_lecturer["nip"]; ?> - <?php echo $row_lecturer["matakuliah"]; ?></span>
-                    </div>
+                        <div class="flex flex-col items-center pb-10">
+                            <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="img/lecturer.jpeg" alt="Lecturer"/>
+                            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><?php echo $row_lecturer["name"]; ?></h5>
+                            <span class="text-sm text-gray-500 dark:text-gray-400"><?php echo $row_lecturer["nip"]; ?> - <?php echo $row_lecturer["matakuliah"]; ?></span>
+                        </div>
                 <?php
                     } else {
                         echo "<div class='px-4 py-2 text-center'>No profile found</div>";

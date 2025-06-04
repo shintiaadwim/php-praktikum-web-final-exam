@@ -15,6 +15,7 @@
     include 'layouts/sidebar.php';
 ?>
 
+<!-- QUERY UNTUK MENTOTAL JUMLAH SELURUH MAHASISWA, DOSEN DAN MATERI YG TERUPLOAD -->
 <?php 
     $result = mysqli_query($conn, "SELECT COUNT(*) as total FROM mahasiswa");
     $row = mysqli_fetch_assoc($result);
@@ -64,14 +65,16 @@
                     <h5 class="mb-2 text-2xl font-semibold tracking-tight text-white dark:text-white">Profile Dosen (<?php echo $totalProfileDosen; ?>)</h5>
                 </a>
                 <p class="mb-3 font-normal text-white dark:text-gray-400">Go to this step by step guideline process on how to certify for your weekly benefits:</p>
-                <div class="text-center px-5 py-2.5 bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg dark:bg-green-600">
-                    <a href="lecturer.php" class="inline-flex font-medium items-center text-white hover:underline">
-                        See more
-                        <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"/>
-                        </svg>
-                    </a>
-                </div>
+                <?php if (isset($_SESSION['role']) && in_array($_SESSION['role'], ['admin'])): ?>
+                    <div class="text-center px-5 py-2.5 bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg dark:bg-green-600">
+                        <a href="lecturer.php" class="inline-flex font-medium items-center text-white hover:underline">
+                            See more
+                            <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"/>
+                            </svg>
+                        </a>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="bg-yellow-500 p-6 border border-gray-200 rounded-lg shadow-sm w-full dark:bg-gray-800 dark:border-gray-700">
