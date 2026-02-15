@@ -33,7 +33,7 @@
 <div class="sm:ml-64 mt-14">
     <div class="p-4">
         <div class="pb-4 text-2xl font-bold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-            Dashboard Mahasisawa 1 D4 Teknik Informatika B
+            Dashboard Mahasiswa 1 D4 Teknik Informatika B
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
@@ -43,7 +43,7 @@
                     <path d="M14.2996 13.2767c.2332-.2289.5636-.3294.8847-.2692C17.379 13.4191 19 15.4884 19 17.6488v2.1525c0 1.2289-1.0315 2.1428-2.2 2.1428H7.2c-1.16849 0-2.2-.9139-2.2-2.1428v-2.1525c0-2.1409 1.59079-4.1893 3.75163-4.6288.32214-.0655.65589.0315.89274.2595l2.34883 2.2606 2.3064-2.2634Z"/>
                 </svg>
                 <a href="index.php">
-                    <h5 class="mb-2 text-2xl font-semibold tracking-tight text-white dark:text-white">Mahasisawa (<?php echo $totalMahasiswa; ?>)</h5>
+                    <h5 class="mb-2 text-2xl font-semibold tracking-tight text-white dark:text-white">Mahasiswa (<?php echo $totalMahasiswa; ?>)</h5>
                 </a>
                 <p class="mb-3 font-normal text-white dark:text-gray-400">Go to this step by step guideline process on how to certify for your weekly benefits:</p>
                 <div class="text-center px-5 py-2.5 bg-sky-600 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-sky-300 rounded-lg dark:bg-sky-600">

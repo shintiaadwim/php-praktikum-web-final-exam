@@ -33,7 +33,7 @@
 <div class="sm:ml-64 mt-14">
     <div class="p-4">
         <div class="pb-4 text-2xl font-bold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-            Daftar Data Mahasisawa 1 D4 Teknik Informatika B
+            Daftar Data Mahasiswa 1 D4 Teknik Informatika B
             <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">This is a list of students in Informatics Engineering Class 1B, including names, student NRP, and other details. Use this list to get to know your classmates better.</p>
         </div>
 
